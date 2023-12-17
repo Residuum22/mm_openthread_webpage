@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <!-- hello -->
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- -->
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
+    <title>Önálló laboratórium - Thread vezérlőpult</title>
+  </head>
+
+  <header>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <div class="container-fluid">
+        <div
+          class="collapse navbar-collapse justify-content-start"
+          id="navbarSupportedContent"
+        >
+          <img src="./img/thread_icon.svg" alt="logo" width="24" height="24" />
+          <div class="mx-1"></div>
+          <a class="navbar-brand" href="/"> Főoldal </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <script>
+    function onChange() {
+      const password = document.querySelector("input[name=password]");
+      const confirm = document.querySelector("input[name=passwordAgain]");
+      if (password.value === "") {
+        password.setCustomValidity("Password missing!");
+        return;
+      } else if (password.value.length < 5) {
+        password.setCustomValidity(
+          "Password must be more than 5 characters long!"
+        );
+        return;
+      } else if (confirm.value === password.value) {
+        confirm.setCustomValidity("");
+      } else {
+        confirm.setCustomValidity("Passwords do not match");
+      }
+    }
+
+    function usernameCheck() {
+      const username = document.querySelector("input[name=username]");
+      if (username.value === "") {
+        username.setCustomValidity("Please don't let empty!");
+        return;
+      } else if (username.value.length < 5) {
+        username.setCustomValidity(
+          "Username must be more than 5 characters long!"
+        );
+        return;
+      }
+      const usernameRegex = /^[a-zA-Z0-9]+$/.exec(username);
+      if (usernameRegex.value === username.value) {
+        username.setCustomValidity("");
+      } else {
+        username.setCustomValidity(
+          "Username only can contain small and capital letters with numbers!"
+        );
+      }
+    }
+  </script>
+
+  <body>
+    <div class="jumbotron text-center">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 offset-3 float-md-center">
+        <div class="my-5"></div>
+        <h1 class="display-4">
+          <div class="ml-auto"></div>
+          <img
+            src="img/thread_icon.svg"
+            alt="logo"
+            width="128"
+            height="128"
+          /><br />
+          MM Thread Log-In
+          <div class="ml-auto"></div>
+        </h1>
+      </div>
+    </div>
+    <div class="jumbotron">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 offset-3 float-md-center">
+        {% block content %}
+        <p class="text-danger">{{error_status}}</p>
+        {% endblock %}
+        <form method="POST" action="/login">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="username"
+              class="form-control"
+              id="username"
+              name="username"
+              placeholder="Enter username"
+              onchange="usernameCheck()"
+              oninput="this.setCustomValidity('')"
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              placeholder="Enter password"
+              onchange="onChange()"
+              oninput="this.setCustomValidity('')"
+            />
+            <!-- <input type="hidden" name="grant_type" value="code_authenticate">
+            <input type="hidden" name="client_id" value="XEeJYNqbZT_mIra2qJrh-ibkU-8xbyYnRQUFDZy5"> -->
+            <!-- <input type="hidden" name="response_type" value="code"> -->
+            <input type="hidden" name="redirect_uri" value="/users/me">
+          </div>
+          <div class="my-3"></div>
+          <button type="submit" class="btn btn-primary">Log In</button>
+          <a
+            href="/register"
+            class="btn btn-secondary active"
+            role="button"
+            aria-pressed="true"
+            >Register</a
+          >
+        </form>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+
+  <footer class="footer sticky-bottom">
+    <div class="my-3"></div>
+    <div class="text-center p-3 bg-light">©Mihalik Márk 2021</div>
+  </footer>
+</html>

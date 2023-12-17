@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- the page starts here -->
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- -->
+  <!-- Bootstrap CSS -->
+
+  <title>Önálló laboratórium - Thread vezérlőpult</title>
+  <!-- <link rel="shortcut icon" href="favicon.ico?v=" /> -->
+</head>
+
+<header>
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container-fluid">
+      <img src="./img/thread_icon.svg" alt="logo" width="24" height="24" />
+      <div class="mx-1"></div>
+      <a class="navbar-brand" href="/frontpage"> Főoldal </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Szenzorok
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="asd">Hozzáadás</a></li>
+              <li><a class="dropdown-item" href="asd">Módosítás</a></li>
+              <li><a class="dropdown-item" href="asd">Törlés</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Személyes adatok
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="">Lekérdezés</a>
+              <a class="dropdown-item" href="">Módosítás</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Hőtérkép</a>
+          </li>
+        </ul>
+        <form class="form-inline d-flex" action="search_call.php" method="POST">
+          <input class="form-control mr-auto" type="search" placeholder="Keresés város alapján" aria-label="Search"
+            name="search_result" required="" required="" oninvalid="this.setCustomValidity('Ne hagyja üresen!')"
+            onkeyup="this.setCustomValidity('')" />
+          <div class="mx-md-1"></div>
+          <button class="btn btn-outline-primary" type="submit">
+            Keresés
+          </button>
+          <div class="mx-md-1"></div>
+        </form>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<body>
+  Ez a body
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+  </script>
+</body>
+
+<footer class="footer fixed-bottom">
+  <div class="my-3"></div>
+  <div class="text-center p-3 bg-light">©Mihalik Márk 2021</div>
+</footer>
+
+</html>

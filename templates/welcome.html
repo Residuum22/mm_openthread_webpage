@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="hu">
+<!-- hello -->
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- -->
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
+  <title>Thread vezérlőpult</title>
+</head>
+
+<header>
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container-fluid">
+      <img src="./img/thread_icon.svg" alt="logo" width="24" height="24" />
+      <div class="mx-1"></div>
+      <a class="navbar-brand" href="/"> Főoldal </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      {% if isUserThere %}
+
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Thread
+          </a>
+          <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+
+            {% if userHasThreadNetwork %}
+            <li>
+              <a class="dropdown-item" href="#">Delete Thread Network</a>
+            </li>
+
+            {% else %}
+            <li>
+              <a class="dropdown-item" href="/addthreadnetwork">Add Thread network to user</a>
+            </li>
+
+            {% endif %}
+            <li>
+              <a class="dropdown-item" href="#">Add new device to Thread network</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Remove existing device from Thread network</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <!--  -->
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            User
+          </a>
+          <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li>
+              <a class="dropdown-item" href="/modifyuserdata">Modify user data</a>
+            </li>
+            <li>
+              {% if userHasPlace %}
+              <a class="dropdown-item" href="/modifyuserplace">Modify user place</a>
+              {% else %}
+              <a class="dropdown-item" href="/adduserplace">Add user place</a>
+              {% endif %}
+            </li>
+            <li>
+              {% if userHasHeatMap %}
+              <a class="dropdown-item" href="#">Modify heatmap</a>
+              {% else %}
+              <a class="dropdown-item" href="#">Add heatmap</a>
+              {% endif %}
+            </li>
+            <li>
+              {% if userHasLightMap %}
+              <a class="dropdown-item" href="#">Modify Lightmap</a>
+              {% else %}
+              <a class="dropdown-item" href="#">Add Lightmap</a>
+              {% endif %}
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          {% if userHasHeatMap %}
+          <a class="nav-link" href="#">Heatmap</a>
+          {% else %}
+          <a class="nav-link disabled" href="#">Heatmap</a>
+          {% endif %}
+        </li>
+        <li class="nav-item">
+          {% if userHasLightMap %}
+          <a class="nav-link" href="#">Lightmap</a>
+          {% else %}
+          <a class="nav-link disabled" href="#">Lightmap</a>
+          {% endif %}
+        </li>
+      </ul>
+      {% endif %}
+
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        {% if isUserThere %}
+        <a href="/controlPanel" class="btn btn-outline-primary" role="button" aria-pressed="true">Control
+          panel</a>
+        <div class="mx-1"></div>
+        <a href="/logout" class="btn btn-secondary active" role="button" aria-pressed="true">Log out</a>
+        {% else %}
+        <a href="/login" class="btn btn-primary active" role="button" aria-pressed="true">Log In</a>
+        <div class="mx-1"></div>
+        <a href="/register" class="btn btn-secondary active" role="button" aria-pressed="true">Sign Up</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+</header>
+
+<body>
+  <div class="jumbotron text-center">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 offset-3 float-md-center">
+      <div class="my-5"></div>
+      <h1 class="display-4">
+        <div class="ml-auto"></div>
+        <img src="img/thread_icon.svg" alt="logo" width="128" height="128" /><br />
+        Welcome!
+        <div class="ml-auto"></div>
+      </h1>
+      {% if isUserThere %}
+      <h1 style="display: inline">Hello</h1>
+      <h1 class="text-primary" style="display: inline">{{userRealName}}!</h1>
+      <div class="my-6"></div><br>
+      {% if not userHasPlace %}
+      <h5 class="text-secondary">Next step: Please enter your address</h5>
+      <h6 class="text-primary">Navigation bar -> User -> Add user place</h6>
+      {% elif not userHasThreadNetwork %}
+      <h5 class="text-secondary">Next step: Please add your Thread network</h5>
+      <h6 class="text-primary">Navigation bar -> Thread -> Add Thread network to user</h6>
+      {% endif %}
+      {% else %}
+      <h3>After log-in you can access to your Thread network.</h3>
+      {% endif %}
+      
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+  </script>
+</body>
+
+<footer class="footer fixed-bottom">
+  <div class="my-3"></div>
+  <div class="text-center p-3 bg-light">©Mihalik Márk 2021</div>
+</footer>
+
+</html>
